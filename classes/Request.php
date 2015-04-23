@@ -9,6 +9,7 @@ class APIShipstation_Request {
   protected $EndPoint = null;
   protected $HttpMethod = "get";
 
+  public $IsDebug = false;
   /**
    * @param $key - API Key for access to API
    * @param $secret - API Secret
@@ -19,14 +20,14 @@ class APIShipstation_Request {
   }
 
   public function query() {
-
-    $json = $this->curl();
-    $data = json_decode($json, true);
-    if (isset($data["Head"]) && isset($data["Head"]["ErrorCode"])) {
-      $this->ErrorResponse = $data["Head"];
-      return null;
+    $info = null;
+    $json = $this->curl($info);
+    if (is_array($info) && isset($info["http_code"]) && $info["http_code"] == 200) {
+      return json_decode($json, true);
     }
-    return $data;
+    $info["response_body"] = json_decode($json, true);
+    $this->ErrorResponse = $info;
+    return null;
   }
 
   protected function params() {
@@ -37,16 +38,25 @@ class APIShipstation_Request {
    * @return string
    */
   public function error() {
-    if (isset($this->ErrorResponse) && is_array($this->ErrorResponse) && isset($this->ErrorResponse["ErrorCode"])) {
-      return $this->ErrorResponse["ErrorMessage"];
+    $error_str = "";
+    if (isset($this->ErrorResponse) && is_array($this->ErrorResponse)) {
+      if(isset($this->ErrorResponse["http_code"])) {
+        $error_str .= $this->ErrorResponse["http_code"] . ": ";
+      }
+      if(isset($this->ErrorResponse["response_body"]) && isset($this->ErrorResponse["response_body"]["Message"])) {
+        $error_str .=  $this->ErrorResponse["response_body"]["Message"];
+      }
+      if(isset($this->ErrorResponse["response_body"]) && $this->IsDebug) {
+        $error_str .= "\n\n" . print_r($this->ErrorResponse["response_body"], true);
+      }
     }
-    return "";
+    return $error_str;
   }
   /**
    * Make request to API url
    * @return string
    */
-  private function curl() {
+  private function curl(&$info) {
     $url = trim(API_SHIPSTATION_URL, "/") . "/" . $this->EndPoint;
     if ($this->HttpMethod == "get") {
       $query = $this->params();
@@ -75,6 +85,7 @@ class APIShipstation_Request {
       curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
     }
     $data = curl_exec($ch);
+    $info = curl_getinfo($ch);
     curl_close($ch);
     return $data;
   }

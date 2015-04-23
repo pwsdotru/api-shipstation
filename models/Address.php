@@ -4,29 +4,29 @@
  * Model for Address object
  * Details: http://www.shipstation.com/developer-api/#/reference/model-address
  */
-class APIShipstation_Model_Address {
+class APIShipstation_Model_Address extends APIShipstation_Model {
   /** @var string  Name of person */
-  public $name = "";
+  public $name = null;
   /** @var string  Name of company */
-  public $company = "";
+  public $company = null;
   /** @var string  First line of address */
-  public $street1 = "";
+  public $street1 = null;
   /** @var string  Second line of address */
-  public $street2 = "";
+  public $street2 = null;
   /** @var string  Third line of address */
-  public $street3 = "";
+  public $street3 = null;
   /** @var string  City */
-  public $city = "";
+  public $city = null;
   /** @var string  State */
-  public $state	= "";
+  public $state	= null;
   /** @var string  Postal Code */
-  public $postalCode = "";
+  public $postalCode = null;
   /** @var string  Country Code. The two-character ISO country code is required */
-  public $country = "";
+  public $country = null;
   /** @var string  Telephone number */
-  public $phone	= "";
+  public $phone	= null;
   /** @var boolean  Specifies whether the given address is residential */
-  public $residential;
+  public $residential = null;
   /** @var  string */
-  public $addressVerified;
+  public $addressVerified = null;
 }
