@@ -10,13 +10,13 @@ class APIShipstation_Model_Address extends APIShipstation_Model {
   /** @var string  Name of company */
   public $company = null;
   /** @var string  First line of address */
-  public $street1 = null;
+  public $street1 = "";
   /** @var string  Second line of address */
   public $street2 = null;
   /** @var string  Third line of address */
   public $street3 = null;
   /** @var string  City */
-  public $city = null;
+  public $city = "";
   /** @var string  State */
   public $state	= null;
   /** @var string  Postal Code */
