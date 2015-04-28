@@ -68,7 +68,7 @@ class APIShipstation_Model_Order extends APIShipstation_Model {
   /** @var InternationalOptions	 Customs information that can be used to generate customs documents for international orders. */
   public $internationalOptions = null; //:TODO: Model for InternationalOptions
   /** @var AdvancedOptions	Various advanced options that may be available depending on the shipping carrier that is used to ship the order. */
-  public $advancedOptions = null; //:TODO: Model for AdvancedOptions
+  public $advancedOptions = null;
   /** @var array integer  Array of tagId's. Each tagId identifies a tag that has been associated with this order. */
   public $tagIds = null;
 }

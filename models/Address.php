@@ -20,7 +20,7 @@ class APIShipstation_Model_Address extends APIShipstation_Model {
   /** @var string  State */
   public $state	= null;
   /** @var string  Postal Code */
-  public $postalCode = null;
+  public $postalCode = "";
   /** @var string  Country Code. The two-character ISO country code is required */
   public $country = null;
   /** @var string  Telephone number */
