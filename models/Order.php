@@ -59,7 +59,7 @@ class APIShipstation_Model_Order extends APIShipstation_Model {
   public $shipDate = null;
   /** @var string  If placed on hold, this date is the expiration date for this order's hold status. The order is moved back to awaiting_shipment on this date. */
   public $holdUntilDate	= null;
-  /** @var Weight  Weight of the order. */
+  /** @var APIShipstation_Model_Weight  Weight of the order. */
   public $weight = null; //:TODO: Model for Weight
   /** @var  Dimensions  Dimensions of the order. */
   public $dimensions = null; //:TODO: Model for Dimensions

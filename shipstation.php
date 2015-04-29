@@ -9,7 +9,10 @@ require_once(__DIR__ . "/settings.php");
 require_once(API_SHIPSTATION_MODEL_PATCH . "/Model.php");
 require_once(API_SHIPSTATION_MODEL_PATCH . "/Address.php");
 require_once(API_SHIPSTATION_MODEL_PATCH . "/Order.php");
+require_once(API_SHIPSTATION_MODEL_PATCH . "/OrderItem.php");
+require_once(API_SHIPSTATION_MODEL_PATCH . "/ItemOption.php");
 require_once(API_SHIPSTATION_MODEL_PATCH . "/AdvancedOptions.php");
+require_once(API_SHIPSTATION_MODEL_PATCH . "/Weight.php");
 /* Common */
 require_once(API_SHIPSTATION_CLASS_PATCH . "/Request.php");
 /* Orders */
