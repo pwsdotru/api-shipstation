@@ -71,4 +71,15 @@ class APIShipstation_Model_Order extends APIShipstation_Model {
   public $advancedOptions = null;
   /** @var array integer  Array of tagId's. Each tagId identifies a tag that has been associated with this order. */
   public $tagIds = null;
+
+
+  public function __construct($arr = null) {
+    parent::__construct($arr);
+    if (isset($this->billTo) && is_array($this->billTo)) {
+      $this->billTo = new APIShipstation_Model_Address($this->billTo);
+    }
+    if (isset($this->shipTo) && is_array($this->shipTo)) {
+      $this->shipTo = new APIShipstation_Model_Address($this->shipTo);
+    }
+  }
 }

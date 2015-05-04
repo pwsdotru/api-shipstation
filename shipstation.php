@@ -17,4 +17,5 @@ require_once(API_SHIPSTATION_MODEL_PATCH . "/Weight.php");
 require_once(API_SHIPSTATION_CLASS_PATCH . "/Request.php");
 /* Orders */
 require_once(API_SHIPSTATION_CLASS_PATCH . "/Orders/Orders.php");
+require_once(API_SHIPSTATION_CLASS_PATCH . "/Orders/Order.php");
 require_once(API_SHIPSTATION_CLASS_PATCH . "/Orders/CreateOrder.php");

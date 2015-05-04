@@ -5,6 +5,17 @@
  */
 class APIShipstation_Model {
 
+  public function __construct($arr = null) {
+    if ($arr != null) {
+      $vars = get_object_vars($this);
+      foreach($vars AS $name => $value) {
+        if (isset($arr[$name]) && $arr[$name] !== null) {
+          $this->$name = $arr[$name];
+        }
+      }
+    }
+    return $this;
+  }
   /**
    * Remove from class unused properties
    */

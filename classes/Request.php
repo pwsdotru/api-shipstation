@@ -10,6 +10,7 @@ class APIShipstation_Request {
   protected $HttpMethod = "get";
 
   public $IsDebug = false;
+  public $ErrorResponse = null;
   /**
    * @param $key - API Key for access to API
    * @param $secret - API Secret
@@ -19,6 +20,10 @@ class APIShipstation_Request {
     $this->APISecret = $secret;
   }
 
+  /**
+   * Make query to API
+   * @return mixed|null
+   */
   public function query() {
     $info = null;
     $json = $this->curl($info);
@@ -30,8 +35,12 @@ class APIShipstation_Request {
     return null;
   }
 
+  /**
+   * Build array for get request and object for post
+   * @return array | object
+   */
   protected function params() {
-    return "";
+    return array();
   }
   /**
    * Return error message for last API call
@@ -59,9 +68,9 @@ class APIShipstation_Request {
   private function curl(&$info) {
     $url = trim(API_SHIPSTATION_URL, "/") . "/" . $this->EndPoint;
     if ($this->HttpMethod == "get") {
-      $query = $this->params();
-      if ($query != "") {
-        $url .= "?" . $query;
+      $params = $this->params();
+      if (is_array($params) && count($params) > 0) {
+        $url .= "?" . http_build_query($params, '', '&', PHP_QUERY_RFC3986);
       }
       $method = "get";
     } else {
